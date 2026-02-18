@@ -57,3 +57,41 @@ bashlaunchctl load ~/Library/LaunchAgents/com.user.telegramlogger.plist
 Проверьте что запустился:
 bashlaunchctl list | grep telegramlogger
 Если видите строку с цифрами — работает. Теперь Terminal можно закрыть.
+
+
+
+
+
+
+
+
+
+Для автозапуска — добавьте python3
+
+Как добавить оба:
+Системные настройки → Конфиденциальность → Accessibility:
+
+Добавьте Terminal: /Applications/Utilities/Terminal.app
+Добавьте python3:
+
+Узнайте путь: which python3
+Обычно /usr/local/bin/python3 или /opt/homebrew/bin/python3
+Нажмите + → Cmd+Shift+G → вставьте путь → добавьте
+
+
+
+Обе галочки должны стоять ✅
+
+Проверка:
+После настройки LaunchAgent проверьте что работает:
+bash# Запустите автозапуск
+launchctl load ~/Library/LaunchAgents/com.user.telegramlogger.plist
+
+# Подождите 10 секунд, откройте Telegram
+
+# Проверьте есть ли записи
+ls -lh ~/Library/Application\ Support/TelegramLogger/
+
+# Должен появиться файл messages_ДАТА_001.txt
+Если файла нет или он пустой — проверьте ошибки:
+bashcat ~/Library/Application\ Support/TelegramLogger/daemon_errors.txt
